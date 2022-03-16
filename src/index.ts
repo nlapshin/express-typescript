@@ -2,6 +2,7 @@ import * as http from "http";
 import express, { Express } from "express";
 import bodyParser from "body-parser";
 
+import routes from './routes'
 export class Server {
     private readonly _app: Express;
 
@@ -26,6 +27,8 @@ export class Server {
     public configureMiddleware() {
         this._app.use(bodyParser.json());
         this._app.use(bodyParser.urlencoded({ extended: true }));
+
+        routes.register(this._app)
     }
 
     public start() {
