@@ -1,9 +1,10 @@
 import { Express, Request } from "express";
-import { routeConfig, METHOD } from '../decorators'
+import { routeConfig, routeLog, METHOD } from '../decorators'
 
 export default {
   register(server: Express) {
     class Routes {
+      @routeLog()
       @routeConfig({
         server,
         method: METHOD.GET,
@@ -13,6 +14,7 @@ export default {
         return { key: 'value' };
       }
 
+      @routeLog()
       @routeConfig({
         server,
         method: METHOD.POST,
