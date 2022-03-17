@@ -1,5 +1,5 @@
 import { Express, Request } from "express";
-import { routeConfig, routeLog, METHOD } from '../decorators'
+import { routeConfig, routeLog, routeAuth, METHOD } from '../decorators'
 
 export default {
   register(server: Express) {
@@ -23,6 +23,17 @@ export default {
       public postExample(request: Request) {
         return request.body;
       }
+
+      @routeLog()
+      @routeAuth('12345')
+      @routeConfig({
+        server,
+        method: METHOD.DELETE,
+        path: "/"
+      })
+      public deleteExample() {
+        return {}
+      }
     }
-  }
+  }.
 }

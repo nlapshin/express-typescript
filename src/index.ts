@@ -3,6 +3,7 @@ import express, { Express } from "express";
 import bodyParser from "body-parser";
 
 import routes from './routes'
+
 export class Server {
     private readonly _app: Express;
 

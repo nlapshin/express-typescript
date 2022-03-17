@@ -27,12 +27,19 @@ export function routeConfig({server, method, path}: RouteConfigProps): MethodDec
         res.status(200).json({ success: true, data });
       } catch (e) {
         if (e instanceof Error) {
-          res.status(500).json({
-            success: false,
-            message: "Some error occurred",
-            error: e.message,
-            stack: e.stack,
-          });
+          if (e.message === 'Invalid token') {
+            res.status(401).json({
+              success: false,
+              message: e.message
+            });
+          } else {
+            res.status(500).json({
+              success: false,
+              message: "Some error occurred",
+              error: e.message,
+              stack: e.stack,
+            });
+          }
         } else {
           res.status(500).json({
             success: false,
