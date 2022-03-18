@@ -20,7 +20,9 @@
   "homepage": "https://github.com/nlapshin/express-typescript#readme",
   "dependencies": {
     "body-parser": "^1.19.2",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.6.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
