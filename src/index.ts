@@ -7,25 +7,24 @@ import './container'
 
 import routes from './routes'
 import { user } from './entities'
+
 export class Server {
     private readonly _app: Express;
+    private _server!: http.Server;
+
+    constructor() {
+        this._app = express();
+        this._app.set("port", process.env.PORT || 3000);
+
+        this.configureMiddleware();
+    }
 
     get app(): Express {
         return this._app;
     }
 
-    private _server!: http.Server;
-
     get server(): http.Server {
         return this._server;
-    }
-
-    constructor() {
-        this._app = express();
-
-        this._app.set("port", process.env.PORT || 3000);
-
-        this.configureMiddleware();
     }
 
     public configureMiddleware() {
@@ -44,3 +43,12 @@ export class Server {
 }
 
 export default Server;
+
+// express + typescript.
+// 1. npm install typescript --save-dev
+// 2. tsconfig.json - создать.
+// 3. Как запускать наш код? tsc && node ./dist/index.js
+// - ts-node. ts-node для транспиляции и запуска. tsc && node ./dist/index.js
+// - Первый вариант: nodemon + ts-node. Настраиваем nodemon и под ним запускаем ts-node
+// - Второй вариант: ts-node-dev.
+// Можно запускать.

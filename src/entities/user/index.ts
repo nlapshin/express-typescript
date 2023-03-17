@@ -20,3 +20,23 @@ export default {
     }
   }
 }
+
+
+// endpoint user/list -> handler -> userCtrl.list -> userCtrl.list -> userService.list
+
+/*
+@injectable()
+class UserService {
+
+}
+
+
+@injectable()
+class UserCtrl {
+  constructor(@inject() service: UserService)
+
+}
+
+endpoint user/list 
+const userCtrl = container.resolve<UserCtrl>("UserCtrl")
+*/

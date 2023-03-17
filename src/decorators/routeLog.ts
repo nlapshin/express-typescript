@@ -6,9 +6,14 @@ export function routeLog(): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
-    const original = descriptor.value;
+    const original = descriptor.value; // сохраняю ссылку на оригинальный метод
 
-    descriptor.value = function (...args: any[]) {
+    console.log(original) // handler
+
+    descriptor.value = function routeLog(...args: any[]) {
+      console.log('before route log')
+
+      // Мой код
       let request = args[0] as Request;
 
       const {
@@ -25,7 +30,7 @@ export function routeLog(): MethodDecorator {
         headers,
       });
 
-      return original.apply(this, args);
+      return original.apply(this, args); // Вызываю оригинальный
     }
   };
 }

@@ -21,8 +21,10 @@ export function routeConfig({server, method, path}: RouteConfigProps): MethodDec
     descriptor: PropertyDescriptor
   ) {
     const response = async (req: Request, res: Response) => {
+      console.log('before route config', descriptor.value)
+
       try {
-        const data = await descriptor.value(req, res);
+        const data = await descriptor.value(req, res); // наш обработчик для которого выполняется декоторатор
 
         res.status(200).json({ success: true, data });
       } catch (e) {
